@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Atelier B1 · Lecture{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2 class="title is-3">Compréhension écrite : {{ passage.title }}</h2>
+  <p style="white-space: pre-line">{{ passage.text }}</p>
+  <hr />
+  <ol>
+    {% for question in passage.questions %}
+    <li class="mb-4">
+      <p><strong>Question :</strong> {{ question }}</p>
+      <p><strong>Piste de réponse :</strong> {{ passage.answers[loop.index0] }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+  <a class="button is-link" href="{{ url_for('reading') }}">Nouveau texte</a>
+</div>
+{% endblock %}
+

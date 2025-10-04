@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Atelier B1 · Conversation{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2 class="title is-3">Sujet de conversation</h2>
+  <p>{{ prompt }}</p>
+  <div class="notification is-info is-light">
+    <p>
+      Conseil : enregistre-toi pendant que tu réponds au sujet ou écris un paragraphe. Relis-toi ensuite pour repérer
+      les points à améliorer (vocabulaire, fluidité, structures).
+    </p>
+  </div>
+  <a class="button is-link" href="{{ url_for('conversation') }}">Nouveau sujet</a>
+</div>
+{% endblock %}
+
