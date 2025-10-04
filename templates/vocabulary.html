@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Atelier B1 · Vocabulaire{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2 class="title is-3">Vocabulaire : {{ theme }}</h2>
+  <p>Teste-toi sur les traductions ci-dessous. Les exemples t'aident à mémoriser le contexte.</p>
+  <div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>Mot ou expression</th>
+          <th>Traduction</th>
+          <th>Exemple</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in entries %}
+        <tr>
+          <td><strong>{{ entry.french }}</strong></td>
+          <td>{{ entry.english }}</td>
+          <td>{{ entry.example }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Conseil : couvre la colonne « Traduction » pour t'auto-évaluer avant de vérifier les réponses.
+  </p>
+</div>
+{% endblock %}
+

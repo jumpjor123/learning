@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Atelier B1 · Grammaire{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h2 class="title is-3">Grammaire : {{ grammar_point.title }}</h2>
+  <p>{{ grammar_point.explanation }}</p>
+  <form method="post" class="box">
+    <div class="field">
+      <label class="label">Consigne</label>
+      <div class="control">
+        <p>{{ grammar_point.prompt }}</p>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label" for="answer">Ta réponse</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          id="answer"
+          name="answer"
+          value="{{ submitted_answer or '' }}"
+          placeholder="Entre ta proposition ici"
+          required
+        />
+      </div>
+    </div>
+    <input type="hidden" name="title" value="{{ grammar_point.title }}" />
+    <input type="hidden" name="explanation" value="{{ grammar_point.explanation }}" />
+    <input type="hidden" name="prompt" value="{{ grammar_point.prompt }}" />
+    <input type="hidden" name="solution" value="{{ grammar_point.solution }}" />
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link" type="submit">Vérifier</button>
+      </div>
+      <div class="control">
+        <a class="button is-light" href="{{ url_for('grammar') }}">Nouveau point</a>
+      </div>
+    </div>
+  </form>
+
+  {% if submitted_answer is not none %}
+  <article class="message {% if submitted_answer.strip()|lower == grammar_point.solution|lower %}is-success{% else %}is-warning{% endif %}">
+    <div class="message-header">
+      <p>Correction</p>
+    </div>
+    <div class="message-body">
+      <p>
+        Ta réponse : <strong>{{ submitted_answer }}</strong><br />Solution attendue :
+        <strong>{{ grammar_point.solution }}</strong>
+      </p>
+    </div>
+  </article>
+  {% endif %}
+</div>
+{% endblock %}
+

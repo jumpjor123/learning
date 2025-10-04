@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Atelier B1{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+      integrity="sha384-D73hRWlHxpYg3HuZx3dirVK7ZPKzE5MKuKsFCvqNHC+Fcpn9VdwkWPFRmflsJgZV"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background: #f7f7fc;
+      }
+
+      .hero.is-primary {
+        background: linear-gradient(120deg, #536dfe, #7c4dff);
+      }
+
+      .content-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 25px rgba(83, 109, 254, 0.1);
+      }
+
+      .navigation {
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">Atelier interactif niveau B1</h1>
+          <h2 class="subtitle">
+            Entraîne-toi en vocabulaire, grammaire, conversation et compréhension écrite.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <nav class="columns is-multiline navigation">
+          <div class="column is-full-mobile is-one-fifth-tablet">
+            <a class="button is-link is-light is-fullwidth" href="{{ url_for('home') }}">Accueil</a>
+          </div>
+          <div class="column is-full-mobile is-one-fifth-tablet">
+            <a class="button is-link is-outlined is-fullwidth" href="{{ url_for('vocabulary') }}">Vocabulaire</a>
+          </div>
+          <div class="column is-full-mobile is-one-fifth-tablet">
+            <a class="button is-link is-outlined is-fullwidth" href="{{ url_for('grammar') }}">Grammaire</a>
+          </div>
+          <div class="column is-full-mobile is-one-fifth-tablet">
+            <a class="button is-link is-outlined is-fullwidth" href="{{ url_for('conversation') }}">Conversation</a>
+          </div>
+          <div class="column is-full-mobile is-one-fifth-tablet">
+            <a class="button is-link is-outlined is-fullwidth" href="{{ url_for('reading') }}">Lecture</a>
+          </div>
+        </nav>
+
+        <div class="content-card">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Atelier B1</strong> – Sélectionne « Rafraîchir » pour obtenir de nouvelles activités.
+          <a href="{{ url_for('refresh', page=request.endpoint or 'home') }}" class="button is-small is-link is-light"
+            >Rafraîchir</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
